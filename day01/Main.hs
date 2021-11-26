@@ -44,6 +44,11 @@ Part 2:
 #{display $ part2 input}
 |]
 
-part1 = const @String "part1"
+part1 = sum . charDigits
 
-part2 = const @String "part2"
+part2 = findIndex (< 0) . scanl' (+) 0 . charDigits
+
+charDigits :: String -> [Int]
+charDigits = map \case '(' ->  1
+                       ')' -> -1
+                       _   ->  0
